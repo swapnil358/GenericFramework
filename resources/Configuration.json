@@ -1,0 +1,12 @@
+{
+	"BrowserConfiguration": {
+		"chrome": {
+			"tags": "@RFB"
+		}
+	},
+	"iedriverPath": "",
+	"chromedriverPath": "C:\\Users\\n\\Desktop\\chromedriver_win32\\chromedriver.exe",
+						
+	"Rerun_Flag": "Yes",
+	"Rerun_NumberOfTimes": "1"
+}
