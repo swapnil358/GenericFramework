@@ -48,7 +48,6 @@ import gherkin.pickles.PickleStep;
 import gherkin.pickles.PickleTag;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-
 @CucumberOptions(features = "resources/Features/", glue = { "com.ms.stepDefination", "com.ms.utilities" }, plugin = {
 		"json", "json:Report/cucumber.json", "rerun:rerun/failed_scenario.txt",
 		"html:target/cucumber" }, dryRun = true, tags = { "@NewFramework,@4444" })
@@ -58,7 +57,7 @@ public class MSRunner {
 	public static WebDriver driver;
 	public static String executionStartTime;
 	public static String executionStarDate;
-	
+
 	private TestNGCucumberRunner testNGCucumberRunner;
 	public static Map<Long, Scenario> scenarioMap = new HashMap<Long, Scenario>();
 
@@ -70,7 +69,7 @@ public class MSRunner {
 
 	@BeforeClass(alwaysRun = true)
 	public void beforeClass() throws InterruptedException, IOException {
-		
+
 		pageObjectRepository.initializeObjectRepository();
 
 		System.out.println("*******************Started Execution*********************");
@@ -90,9 +89,9 @@ public class MSRunner {
 			System.out.println(e);
 			throw new RuntimeException(e);
 		}
-		
-		browser= XmlRunner.browserMap.get(Thread.currentThread().getId());
-		//browser = XmlRunner.browserMap.get(Thread.currentThread().getId());
+
+		browser = XmlRunner.browserMap.get(Thread.currentThread().getId());
+		// browser = XmlRunner.browserMap.get(Thread.currentThread().getId());
 		if (browser.toLowerCase().contains("headlesschrome")) {
 			browser = "headlesschrome";
 			XmlRunner.browserMap.replace(Thread.currentThread().getId(), "headlesschrome");
@@ -103,22 +102,22 @@ public class MSRunner {
 			browser = "chrome";
 			XmlRunner.browserMap.replace(Thread.currentThread().getId(), "chrome");
 		}
-		System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverPath);
-		/*
-		 * System.setProperty("webdriver.chrome.driver",
-		 * "C:\\Users\\n\\Desktop\\chromedriver_win32\\chromedriver.exe");
-		 */
-		//WebDriverManager.chromedriver().setup();
+		System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverpath);
+
+		// WebDriverManager.chromedriver().setup();
+
 		ChromeOptions options = new ChromeOptions();
-		System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverPath);
+		System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverpath);
 
 		switch (browser) {
 		case "headlesschrome":
+
 			options.addArguments("--headless");
 			options.addArguments("start-maximized");
 			options.addArguments("--disable-gpu");
 			options.addArguments("--disable-extensions");
 			options.addArguments("--no-sandbox");
+
 			driver = new ChromeDriver(options);
 			long threadId = Thread.currentThread().getId();
 			WebDriver driverName = driver;
@@ -126,19 +125,19 @@ public class MSRunner {
 			break;
 		case "chrome":
 			options.setCapability("capability_name", "capability_value");
-			/*
-			 * options.addArguments("disable-popup-blocking");
-			 * options.addArguments("test-type"); options.addArguments("start-maximized");
-			 * options.addArguments("disable-infobars");
-			 * options.addArguments("--no-sandbox");
-			 */
+			options.addArguments("disable-popup-blocking");
+			options.addArguments("test-type");
+			options.addArguments("start-maximized");
+			options.addArguments("disable-infobars");
+			options.addArguments("--no-sandbox");
+
 			driver = new ChromeDriver(options);
-			
+
 			/*
 			 * WebDriverManager.chromedriver().clearPreferences();
 			 * WebDriverManager.chromedriver().setup();
 			 */
-			
+
 			threadId = Thread.currentThread().getId();
 			driverName = driver;
 			XmlRunner.driverMap.put(threadId, driverName);
@@ -255,11 +254,12 @@ public class MSRunner {
 	}
 
 	@AfterClass
-	public void afterClass() {
+	public void afterClass() throws Exception {
 		XmlRunner.driverMap.get(Thread.currentThread().getId()).close();
 		XmlRunner.driverMap.get(Thread.currentThread().getId()).quit();
 		testNGCucumberRunner.finish();
 		new Report_Helper().onFinish();
+		// GenerateEmailReportUpdated.generateReport();
 
 	}
 

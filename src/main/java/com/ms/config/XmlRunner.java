@@ -53,11 +53,11 @@ public class XmlRunner {
 			String[] currentTags = new String[] {
 					entry.getValue().getAsJsonObject().entrySet().iterator().next().getValue().getAsString() };
 			changeAnnotationValue(classAnnotation, "tags", currentTags);
-			changeAnnotationValue(classAnnotation, "plugin", new String[] { "json",
+			changeAnnotationValue(classAnnotation, "plugin", 
+					new String[] { "json",
 					// "json:Report/cucumber" + i + ".json",
 					// "rerun:rerun/failed_scenarios" + i + ".txt" });
-					"json:Report/cucumber-reports/cucumber" + i + ".json",
-					"rerun:rerun/failed_scenarios" + i + ".txt" });
+					"json:Report/cucumber-reports/cucumber" + i + ".json", "rerun:rerun/failed_scenarios" + i + ".txt" });
 			threads[i - 1] = new Thread(new XmlRunner().new MyRunnable());
 			threads[i - 1].start();
 			browserMap.put(threads[i - 1].getId(), entry.getKey());
@@ -76,7 +76,8 @@ public class XmlRunner {
 	public void failedRerun(String browser, Long oldThread) {
 		final CucumberOptions classAnnotation = FailedRerunner.class.getAnnotation(CucumberOptions.class);
 		changeAnnotationValue(classAnnotation, "tags", tagsMap.get(oldThread));
-		changeAnnotationValue(classAnnotation, "plugin", new String[] { "json",
+		changeAnnotationValue(classAnnotation, "plugin", 
+				new String[] { "json",
 				// "json:Report/cucumber" + i + ".json",
 				// "rerun:rerun/failed_scenarios" + i + ".txt" });
 				"json:Report/cucumber-reports/cucumber" + oldThread + 1 + ".json",

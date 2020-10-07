@@ -11,8 +11,8 @@ import com.google.gson.JsonParser;
 public class ConfigJsonReader {
 
 	public static Set<Entry<String, JsonElement>> brConfig = null;
-	public static String chromedriverPath;
-	public static String iedriverPath;
+	public static String chromedriverpath;
+	public static String iedriverpath;
 	public static boolean Rerun_Flag;
 	public static int Rerun_NumberOfTimes;
 
@@ -28,9 +28,9 @@ public class ConfigJsonReader {
 
 			JsonObject jsonObject = (JsonObject) obj;
 			JsonElement brData = jsonObject.get("BrowserConfiguration");
-			brConfig = ((JsonObject) brData).getAsJsonObject().entrySet();
-			iedriverPath = jsonObject.get("iedriverPath").getAsString();
-			chromedriverPath = jsonObject.get("chromedriverPath").getAsString();
+			brConfig = ((JsonElement) brData).getAsJsonObject().entrySet();
+			iedriverpath = jsonObject.get("iedriverPath").getAsString();
+			chromedriverpath = jsonObject.get("chromedriverPath").getAsString();
 			if (jsonObject.get("Rerun_Flag").getAsString().equalsIgnoreCase("yes")) {
 				Rerun_Flag = true;
 			}

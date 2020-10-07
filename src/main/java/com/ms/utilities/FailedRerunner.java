@@ -79,7 +79,7 @@ public class FailedRerunner {
 		}
 		switch (browser) {
 		case "chrome":
-			System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverPath);
+			System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverpath);
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability("capability_name", "capability_value");
 			options.addArguments("disable-popup-blocking");
@@ -94,7 +94,7 @@ public class FailedRerunner {
 			XmlRunner.driverMap.put(threadId, driverName);
 			break;
 		case "ie":
-			System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().iedriverPath);
+			System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().iedriverpath);
 			InternetExplorerOptions ieoptions = new InternetExplorerOptions();
 			ieoptions.setCapability("capability_name", "capability_value");
 			driver = new InternetExplorerDriver(ieoptions);

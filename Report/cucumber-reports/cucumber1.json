@@ -1,0 +1,48 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Free CRM Login Test Scenarios",
+        "description": "",
+        "id": "free-crm-login-features;free-crm-login-test-scenarios",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 6,
+            "name": "I launch \"https://classic.crmpro.com\" url",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://classic.crmpro.com",
+                  "offset": 10
+                }
+              ],
+              "location": "stepDefinations.openApplication(String)"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@RFB"
+          },
+          {
+            "name": " chrome"
+          }
+        ]
+      }
+    ],
+    "name": "Free CRM Login Features",
+    "description": "",
+    "id": "free-crm-login-features",
+    "keyword": "Feature",
+    "uri": "resources/Features/login.feature",
+    "tags": []
+  }
+]
