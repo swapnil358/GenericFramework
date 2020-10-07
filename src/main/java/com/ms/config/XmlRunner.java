@@ -39,7 +39,12 @@ public class XmlRunner {
 	public static Map<Long, List<Integer>> ScenarioAllNumberMap = new HashMap<Long, List<Integer>>();
 	public static Map<Long, Integer> scenarioNumberMap = new HashMap<Long, Integer>();
 	private static Map<Long, String[]> tagsMap = new HashMap<Long, String[]>();
-
+	
+	/*
+	@Swapnil
+	
+	*/
+		
 	public static void main(String[] arg) throws Exception {
 		new XmlRunner().beforeSuite();
 		new ConfigJsonReader();
