@@ -104,6 +104,7 @@ public class XmlRunner {
 
 	private class MyRunnable implements Runnable {
 		public void run() {
+			
 			TestListenerAdapter tla = new TestListenerAdapter();
 			TestNG testng = new TestNG();
 			testng.setTestClasses(new Class[] { MSRunner.class });
@@ -114,6 +115,8 @@ public class XmlRunner {
 
 	private class failedRunnable implements Runnable {
 		public void run() {
+			
+			
 			TestListenerAdapter tla = new TestListenerAdapter();
 			TestNG testng = new TestNG();
 			testng.setTestClasses(new Class[] { FailedRerunner.class });

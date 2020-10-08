@@ -48,7 +48,7 @@ import gherkin.pickles.PickleStep;
 import gherkin.pickles.PickleTag;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@CucumberOptions(features = "resources/Features/", glue = { "com.ms.stepDefination", "com.ms.utilities" }, plugin = {
+@CucumberOptions(features = "resources/Features/", glue = { "stepDefinations", "com.ms.utilities" }, plugin = {
 		"json", "json:Report/cucumber.json", "rerun:rerun/failed_scenario.txt",
 		"html:target/cucumber" }, dryRun = true, tags = { "@NewFramework,@4444" })
 
@@ -104,10 +104,8 @@ public class MSRunner {
 		}
 		System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverpath);
 
-		// WebDriverManager.chromedriver().setup();
-
 		ChromeOptions options = new ChromeOptions();
-		System.setProperty("webdriver.chrome.driver", new ConfigJsonReader().chromedriverpath);
+		System.setProperty("webdriver.ie.driver", new ConfigJsonReader().iedriverpath);
 
 		switch (browser) {
 		case "headlesschrome":
@@ -124,6 +122,7 @@ public class MSRunner {
 			XmlRunner.driverMap.put(threadId, driverName);
 			break;
 		case "chrome":
+			
 			options.setCapability("capability_name", "capability_value");
 			options.addArguments("disable-popup-blocking");
 			options.addArguments("test-type");
@@ -131,6 +130,14 @@ public class MSRunner {
 			options.addArguments("disable-infobars");
 			options.addArguments("--no-sandbox");
 
+			String userProfile= "C:\\Users\\n\\AppData\\Local\\Google\\Chrome\\Automation profile\\";	        
+	        options.addArguments("user-data-dir="+userProfile);
+	        
+			
+			
+			
+			
+			
 			driver = new ChromeDriver(options);
 
 			/*

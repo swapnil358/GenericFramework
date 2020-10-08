@@ -1,7 +1,8 @@
-Feature: Free CRM Login Features
+Feature: Google Features
 	
 @RFB
-Scenario: Free CRM Login Test Scenarios
+Scenario: Verify google page
+	Given I launch "https://www.google.com" url
+	
 
-Given I launch "https://classic.crmpro.com" url
 	

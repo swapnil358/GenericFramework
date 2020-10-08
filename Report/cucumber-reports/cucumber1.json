@@ -4,27 +4,19 @@
     "elements": [
       {
         "line": 4,
-        "name": "Free CRM Login Test Scenarios",
+        "name": "Verify google page",
         "description": "",
-        "id": "free-crm-login-features;free-crm-login-test-scenarios",
+        "id": "google-features;verify-google-page",
         "type": "scenario",
         "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "status": "skipped"
+              "status": "undefined"
             },
-            "line": 6,
-            "name": "I launch \"https://classic.crmpro.com\" url",
-            "match": {
-              "arguments": [
-                {
-                  "val": "https://classic.crmpro.com",
-                  "offset": 10
-                }
-              ],
-              "location": "stepDefinations.openApplication(String)"
-            },
+            "line": 5,
+            "name": "I launch \"https://www.google.com\" url",
+            "match": {},
             "keyword": "Given "
           }
         ],
@@ -38,9 +30,9 @@
         ]
       }
     ],
-    "name": "Free CRM Login Features",
+    "name": "Google Features",
     "description": "",
-    "id": "free-crm-login-features",
+    "id": "google-features",
     "keyword": "Feature",
     "uri": "resources/Features/login.feature",
     "tags": []
