@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.apache.poi.poifs.crypt.dsig.KeyInfoKeySelector;
@@ -165,8 +166,14 @@ public class CommonMethods {
 		Thread.sleep(1000);
 
 	}
+	
+	public void verifyIfSentenceContainTex(String text, String uiElement, String page) throws Exception { 
+		String textl = getEle(uiElement, page).getText(); 
+		Assert.assertTrue(textl.toLowerCase().contains(text.toLowerCase()), "Text Not Found!"); 
+	}
 
-	public void SelecTDropdownByVisibleText(String OptionText, String uiElement, String page) throws Exception {
+
+	public void selectDropdownByVisibleText(String OptionText, String uiElement, String page) throws Exception {
 		try {
 			Select drpElement = new Select(getEle(uiElement, page));
 			drpElement.selectByVisibleText(OptionText);
@@ -218,6 +225,50 @@ public class CommonMethods {
 	public void selectDropdownByValue(String value, String uiElement, String page) throws Exception {
 		Select drpElement = new Select(getEle(uiElement, page));
 		drpElement.selectByValue(value);
+	}
+
+	public void SetDate(String date) {
+
+		// String date = "20-Sep-2018";
+		String dateArr[] = date.split("-");
+		String day = dateArr[0];
+		String month = dateArr[1];
+		String year = dateArr[2];
+
+		Select selectMonth = new Select(driver.findElement(By.xpath("i/select[@class='ui-datepicker-monthi")));
+		selectMonth.selectByVisibleText(month);
+		Select selectYear = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-yearT")));
+		selectYear.selectByVisibleText(year);
+
+		String beforeXpath = "//*[@id='ui-datepicker-div']/table/tbodyitr[";
+		String afterXpath = "]/td[";
+
+		final int totalweekDays = 7;
+		String dayVal = null;
+		boolean flag = false;
+
+		for (int rowNum = 2; rowNum <= 7; rowNum++) {
+			for (int colNum = 1; colNum <= totalweekDays; colNum++) {
+				try {
+
+					dayVal = driver.findElement(By.xpath(beforeXpath + rowNum + afterXpath + colNum + "]")).getText();
+				} catch (NoSuchElementException e) {
+					System.out.println("please enter correct date");
+					flag = false;
+					break;
+				}
+
+				System.out.println(dayVal);
+				if (dayVal.equals(day)) {
+					driver.findElement(By.xpath(beforeXpath + rowNum + afterXpath + colNum + "]")).click();
+
+					flag = true;
+					break;
+				}
+			}
+			if (flag)
+				break;
+		}
 	}
 
 	public void OpenMyApp(String url) throws Exception {
@@ -287,7 +338,7 @@ public class CommonMethods {
 		return MSRunner.scenarioMap.get(Thread.currentThread().getId());
 	}
 
-	//////////////////////////////////////// eriyaaka////////////////////////////////////////////
+	//////////////////////////////////////// Priyaaka////////////////////////////////////////////
 	public void openMyApp(String url) throws Exception {
 		driver.get(url);
 		Thread.sleep(700);
@@ -297,6 +348,16 @@ public class CommonMethods {
 		getEle(uiElement, page).click();
 		getEle(uiElement, page).sendKeys(data);
 		// Thread.sleep(4000);
+	}
+
+	public void clickElement(String uiElement, String page) throws Exception {
+		try {
+			getEle(uiElement, page).click();
+		} catch (Exception e) {
+
+			this.clickOnAlertPopUpBtn(uiElement, page);
+		}
+		Thread.sleep(200);
 	}
 
 	public void verifyElementContainsText(String expectedText, String uiElement, String page) throws Exception {
@@ -571,7 +632,7 @@ public class CommonMethods {
 		r.keyPress(KeyEvent.VK_T);
 
 		Thread.sleep(1000);
-		System.out.println("Open a newtab.");
+		System.out.println("Open a new tab.");
 		Set<String> browsers = driver.getWindowHandles();
 		for (String i : browsers) {
 			if (!i.equals(parentWindHandler)) {

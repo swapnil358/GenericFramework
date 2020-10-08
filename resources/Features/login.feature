@@ -4,5 +4,3 @@ Feature: Google Features
 Scenario: Verify google page
 	Given I launch "https://www.google.com" url
 	
-
-	
