@@ -47,6 +47,13 @@
 			<artifactId>tag-expressions</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>6.9.0</version>
+			
+		</dependency>
 
 
 
@@ -201,6 +208,15 @@
 			<version>1.1.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160810</version>
+		</dependency>
+
+
+
 
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
@@ -232,6 +248,15 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.12.1</version>
 		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-sandwich -->
+		<!-- <dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-sandwich</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+ -->
 
 	</dependencies>
 

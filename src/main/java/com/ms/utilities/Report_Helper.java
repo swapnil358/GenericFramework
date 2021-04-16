@@ -27,11 +27,9 @@ public class Report_Helper {
 				e.printStackTrace();
 			}
 			String[] command = { "cmd.exe", "/C", "Start", "generateReport.bat" };
-
 			try {
 				Runtime.getRuntime().exec(command).waitFor();
 				Thread.sleep(5000);
-
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}

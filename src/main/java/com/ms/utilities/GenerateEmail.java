@@ -39,7 +39,8 @@ public class GenerateEmail {
 		// email ID of Recipient.
 
 		// using host as localhost
-		String host = "mta-hub.ms.com";
+	//	String host = "mta-hub.ms.com";
+		String host = "smtp.gmail.com";
 
 		// Getting system properties
 		Properties properties = System.getProperties();

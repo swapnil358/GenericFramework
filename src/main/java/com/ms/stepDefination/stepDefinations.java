@@ -1,7 +1,5 @@
 package com.ms.stepDefination;
 
-import org.openqa.selenium.support.ui.Select;
-
 import com.ms.utilities.Common_Steps;
 import com.ms.utilities.MSWebElement;
 
@@ -14,8 +12,14 @@ public class stepDefinations {
 
 	Common_Steps common = new Common_Steps();
 
-	@Given("^I launch \"(.*)\" url$")
-	public void openApplication(String url) throws Exception {
+	/*
+	 * @Given("^I launch \"(.*)\" url$") public void openApplication(String url)
+	 * throws Exception { common.OpenMyApp(url); }
+	 */
+	
+	@Given("^I launch \"([^\"]*)\" url$")
+	public void i_launch_url(String url) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
 		common.OpenMyApp(url);
 	}
 

@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.testng.annotations.Test;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -16,6 +18,7 @@ public class ConfigJsonReader {
 	public static boolean Rerun_Flag;
 	public static int Rerun_NumberOfTimes;
 
+	
 	public ConfigJsonReader() {
 		if (brConfig == null) {
 			JsonParser parser = new JsonParser();

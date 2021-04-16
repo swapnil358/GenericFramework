@@ -48,7 +48,9 @@ import gherkin.pickles.PickleStep;
 import gherkin.pickles.PickleTag;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@CucumberOptions(features = "resources/Features/", glue = { "stepDefinations", "com.ms.utilities" }, plugin = {
+@CucumberOptions(features = "resources/Features", 
+glue = { "com.ms.stepDefination", "com.ms.utilities" }, 
+plugin = {
 		"json", "json:Report/cucumber.json", "rerun:rerun/failed_scenario.txt",
 		"html:target/cucumber" }, dryRun = true, tags = { "@NewFramework,@4444" })
 
@@ -82,7 +84,7 @@ public class MSRunner {
 
 		System.out.println("Execution Start time : " + executionStartTime);
 
-		String browser = null;
+		String browser = "null";
 		try {
 			testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 		} catch (Exception e) {
@@ -123,18 +125,22 @@ public class MSRunner {
 			break;
 		case "chrome":
 			
-			options.setCapability("capability_name", "capability_value");
-			options.addArguments("disable-popup-blocking");
-			options.addArguments("test-type");
-			options.addArguments("start-maximized");
-			options.addArguments("disable-infobars");
-			options.addArguments("--no-sandbox");
+			
+			  options.setCapability("capability_name", "capability_value");
+			  options.addArguments("disable-popup-blocking");
+			  options.addArguments("test-type"); 
+			  options.addArguments("start-maximized");
+			  options.addArguments("disable-infobars");
+			  options.addArguments("--no-sandbox");
+			 
 
-			String userProfile= "C:\\Users\\n\\AppData\\Local\\Google\\Chrome\\Automation profile\\";	        
-	        options.addArguments("user-data-dir="+userProfile);
-	        
-			
-			
+			/*
+			 * String userProfile=
+			 * "C:\\Users\\n\\AppData\\Local\\Google\\Chrome\\Automation profile\\";
+			 * options.addArguments("user-data-dir="+userProfile);
+			 * 
+			 * 
+			 */
 			
 			
 			
@@ -262,11 +268,11 @@ public class MSRunner {
 
 	@AfterClass
 	public void afterClass() throws Exception {
-		XmlRunner.driverMap.get(Thread.currentThread().getId()).close();
-		XmlRunner.driverMap.get(Thread.currentThread().getId()).quit();
+	XmlRunner.driverMap.get(Thread.currentThread().getId()).close();
+	XmlRunner.driverMap.get(Thread.currentThread().getId()).quit();
 		testNGCucumberRunner.finish();
 		new Report_Helper().onFinish();
-		// GenerateEmailReportUpdated.generateReport();
+	//	GenerateEmailReportUpdated1.generateReport();
 
 	}
 
