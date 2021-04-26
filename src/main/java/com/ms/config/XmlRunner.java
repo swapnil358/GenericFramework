@@ -154,7 +154,7 @@ public class XmlRunner {
 
 	@AfterSuite
 	public void cleanUp() throws IOException {
-		new Report_Helper().onFinish();
+	//	new Report_Helper().onFinish();
 	}
 
 	private static Object changeAnnotationValue(Annotation annotation, String key, Object newValue) {

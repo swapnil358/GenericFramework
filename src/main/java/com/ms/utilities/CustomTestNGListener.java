@@ -21,8 +21,8 @@ public class CustomTestNGListener implements ITestListener {
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		List<Integer> list = XmlRunner.ScenarioAllNumberMap.get(Thread.currentThread().getId());
-		// list.remove((Integer)XmlRunner.ScenarioAllNumberMap.get(Thread.currentThread().getId()));
-		// if(CurrentALMID ! = null) {
+		list.remove((Integer)XmlRunner.scenarioNumberMap.get(Thread.currentThread().getId()));
+		//if(CurrentALMID ! = null) {
 
 	}
 

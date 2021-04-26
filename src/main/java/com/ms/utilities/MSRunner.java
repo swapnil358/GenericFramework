@@ -48,8 +48,8 @@ import gherkin.pickles.PickleStep;
 import gherkin.pickles.PickleTag;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@CucumberOptions(features = "resources/Features", 
-glue = { "com.ms.stepDefination", "com.ms.utilities" }, 
+@CucumberOptions(features = "resources/Features/Googlecheck.feature", 
+glue = { "com.ms.stepDefination/stepDefination1", "com.ms.utilities" }, 
 plugin = {
 		"json", "json:Report/cucumber.json", "rerun:rerun/failed_scenario.txt",
 		"html:target/cucumber" }, dryRun = true, tags = { "@NewFramework,@4444" })
@@ -274,6 +274,10 @@ public class MSRunner {
 		new Report_Helper().onFinish();
 	//	GenerateEmailReportUpdated1.generateReport();
 
+	}
+	
+	public static Scenario getCurrentScenario() {
+		return MSRunner.scenarioMap.get(Thread.currentThread().getId());
 	}
 
 }

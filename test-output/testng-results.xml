@@ -1,43 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="0" passed="0" failed="0" skipped="0">
   <reporter-output>
-    <line>
-      <![CDATA[<div "result">I launch &quot;https:&#x2F;&#x2F;www.google.com&quot; url (SKIPPED)</div>]]>
-    </line>
-    <line>
-      <![CDATA[<div "result">I enter &quot;testing&quot; in &quot;googleSearch&quot; field in &quot;login&quot; page (SKIPPED)</div>]]>
-    </line>
   </reporter-output>
-  <suite started-at="2021-04-16T18:24:40Z" name="Command line suite" finished-at="2021-04-16T18:25:04Z" duration-ms="24325">
+  <suite started-at="2021-04-26T17:33:35Z" name="Command line suite" finished-at="2021-04-26T17:33:52Z" duration-ms="16718">
     <groups>
       <group name="cucumber">
-        <method signature="MSRunner.runScenario(gherkin.events.PickleEvent)[pri:0, instance:com.ms.utilities.MSRunner@4c4081ac]" name="runScenario" class="com.ms.utilities.MSRunner"/>
+        <method signature="MSRunner.runScenario(gherkin.events.PickleEvent)[pri:0, instance:com.ms.utilities.MSRunner@73804e2c]" name="runScenario" class="com.ms.utilities.MSRunner"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-04-16T18:24:40Z" name="Command line test" finished-at="2021-04-16T18:25:04Z" duration-ms="24325">
+    <test started-at="2021-04-26T17:33:35Z" name="Command line test" finished-at="2021-04-26T17:33:52Z" duration-ms="16718">
       <class name="com.ms.utilities.MSRunner">
-        <test-method is-config="true" signature="beforeClass()[pri:0, instance:com.ms.utilities.MSRunner@4c4081ac]" started-at="2021-04-16T18:24:40Z" name="beforeClass" finished-at="2021-04-16T18:24:54Z" duration-ms="13804" status="PASS">
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:com.ms.utilities.MSRunner@73804e2c]" started-at="2021-04-26T17:33:35Z" name="beforeClass" finished-at="2021-04-26T17:33:44Z" duration-ms="8655" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method signature="runScenario(gherkin.events.PickleEvent)[pri:0, instance:com.ms.utilities.MSRunner@4c4081ac]" started-at="2021-04-16T18:24:54Z" name="runScenario" description="Runs cucumber scenario" data-provider="scenarios" finished-at="2021-04-16T18:24:54Z" duration-ms="101" status="FAIL">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[gherkin.events.PickleEvent@5adc090a]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[<div "result">I launch &quot;https:&#x2F;&#x2F;www.google.com&quot; url (SKIPPED)</div>]]>
-            </line>
-            <line>
-              <![CDATA[<div "result">I enter &quot;testing&quot; in &quot;googleSearch&quot; field in &quot;login&quot; page (SKIPPED)</div>]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.ms.utilities.MSRunner@4c4081ac]" started-at="2021-04-16T18:24:54Z" name="afterClass" finished-at="2021-04-16T18:25:04Z" duration-ms="10087" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.ms.utilities.MSRunner@73804e2c]" started-at="2021-04-26T17:33:45Z" name="afterClass" finished-at="2021-04-26T17:33:52Z" duration-ms="7513" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->

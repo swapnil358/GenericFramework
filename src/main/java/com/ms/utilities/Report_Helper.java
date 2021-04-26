@@ -61,6 +61,7 @@ public class Report_Helper {
 			if (file.isDirectory() && (file.getName().startsWith("cucumber-html-reports")
 					|| file.getName().startsWith("RerunReports"))) {
 				System.out.println(file.getName());
+				moveFolder(file.getName());
 			}
 		}
 	}
@@ -87,6 +88,7 @@ public class Report_Helper {
 					|| file.getName().startsWith("RerunReports"))) {
 				System.out.println(file.getName());
 				copyFolder(file.getName());
+				
 			}
 		}
 

@@ -2,8 +2,11 @@ package com.ms.pages;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -20,6 +23,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -35,6 +39,25 @@ public class CommonMethods {
 	public WebDriver driver = XmlRunner.driverMap.get(Thread.currentThread().getId());
 	int objectWait = 2;
 	String parentWindHandler = null;
+	String parentWindHandler1 = null;
+	File folder;
+	String setYTDValue = null;
+	public static Wait<WebDriver> wait;
+	public static LinkedHashMap<String, String> testdatoMbp;
+	public static JavascriptExecutor jse;
+	public static String value = "";
+	public String[] arrStr;
+	public WebElement element = null, ele = null;
+	public java.util.Date javaDate;
+	public static String expectedResuLt = "";
+	String expectedResult2 = null;
+	String expectedResult3 = null;
+	public static String formatDate = "", strDateformat = "";
+	String updatedValue = "";
+	String hexCode = "";
+	String color = "";
+	String getslotvalue = null;
+	Set<String> browsers = new HashSet<>();
 
 	public MSWebElement getEle(String locator_key_value, String page) throws Exception {
 		String locator_type;
@@ -166,12 +189,11 @@ public class CommonMethods {
 		Thread.sleep(1000);
 
 	}
-	
-	public void verifyIfSentenceContainTex(String text, String uiElement, String page) throws Exception { 
-		String textl = getEle(uiElement, page).getText(); 
-		Assert.assertTrue(textl.toLowerCase().contains(text.toLowerCase()), "Text Not Found!"); 
-	}
 
+	public void verifyIfSentenceContainTex(String text, String uiElement, String page) throws Exception {
+		String textl = getEle(uiElement, page).getText();
+		Assert.assertTrue(textl.toLowerCase().contains(text.toLowerCase()), "Text Not Found!");
+	}
 
 	public void selectDropdownByVisibleText(String OptionText, String uiElement, String page) throws Exception {
 		try {
@@ -272,9 +294,13 @@ public class CommonMethods {
 	}
 
 	public void OpenMyApp(String url) throws Exception {
-		driver.get(url);
-		Thread.sleep(500);
-
+		try {
+			driver.manage().deleteAllCookies();
+			driver.get(url);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			System.out.println("unable to enter url");
+		}
 	}
 
 	public void checkCheckBox(String uiElement, String page) throws Exception {

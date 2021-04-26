@@ -1,4 +1,4 @@
-package com.ms.stepDefination;
+package com.ms.utilities;
 
 import com.ms.utilities.Common_Steps;
 import com.ms.utilities.MSWebElement;
@@ -12,12 +12,8 @@ public class stepDefinations {
 
 	Common_Steps common = new Common_Steps();
 
-	/*
-	 * @Given("^I launch \"(.*)\" url$") public void openApplication(String url)
-	 * throws Exception { common.OpenMyApp(url); }
-	 */
 	
-	@Given("^I launch \"([^\"]*)\" url$")
+	@Given("^I launch \"(.*)\" url$")
 	public void i_launch_url(String url) throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
 		common.OpenMyApp(url);
@@ -29,7 +25,7 @@ public class stepDefinations {
 		common.enterText(data, uiElement, page);
 	}
 
-	@And("AI enter \"(.*)\" in \"(.*)\" field and select \"(.*)\" page$")
+	@And("I enter \"(.*)\" in \"(.*)\" field and select \"(.*)\" page$")
 	public void typeAndSelectText(String data, String uiElement, String page) throws Exception {
 		common.waitTillPageLoad("page_load");
 		common.typeAndSelectTextBox(data, uiElement, page);
@@ -58,13 +54,7 @@ public class stepDefinations {
 		common.clickOnAlertPopUpBtn(uiElement, page);
 	}
 
-	/**
-	 * * @author Swagnil, *
-	 * 
-	 * @description - Clear input box *
-	 * @Param 1. UlElement - should match with property file element name 2. page -
-	 *        should match with property file name
-	 */
+	
 
 	@Then("AI clear \"(.*)\" input in \"(.*)\" pages")
 	public void clearinputField(String uiElement, String page) throws Exception {
@@ -152,13 +142,6 @@ public class stepDefinations {
 		common.selectDropdownByIndex(index, uiElement, page);
 	}
 
-	/*
-	 * @And("I click on excel download \"(.*)\" on \"(.*)\" page$") public void
-	 * DownloadFile(String excelFileLocator, String page) throws Exception {
-	 * common.waitTillPageLoad("page_load");
-	 * common.downloadfiletest(excelFileLocator, page); }
-	 */
-
 	@Given("AI click on \"(.*)\" and select \"(.*)\" text in \"(.*)\" page$")
 	public void clickAndSelect(String uiElement, String sValue, String page) throws Exception {
 		common.waitTillPageLoad("page_load");
@@ -177,21 +160,7 @@ public class stepDefinations {
 		common.mouseHoverAndClick(uiElement, page);
 
 	}
-	/*
-	 * @When("AI select \"(.*)\" text from \"(.*)\" in \"(.*)\" page$") public void
-	 * selectUsingText(String text,String uiElement,String page) throws Exception {
-	 * common.waitTillPageLoad("page_load");
-	 * common.selectFromDropDownByVisibleText(text,uiElement,page); }
-	 */
-
-	/*
-	 * @When("AI select the option \"(.*)\" in \"(.*)\" input in \"(.*)\" // page$")
-	 * public void selectUsingText(String text, String uiElement, String page)
-	 * throws Exception { common.waitTillPageLoad("page_load");
-	 * common.selectFromDropDownByVisibleText(text, uiElement, page);
-	 * 
-	 * }
-	 */
+	
 	
 	
 	 @When("AI verify \"([^\"]*)\" not present on \"([^\"]*)\" page$") 
