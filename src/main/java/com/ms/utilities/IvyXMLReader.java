@@ -29,8 +29,10 @@ public class IvyXMLReader {
 
 	public static String readDataFromXMLForCMD() throws ParserConfigurationException, SAXException, IOException {
 		File ivyXmlFile = new File("ivy.xml");
-		String path = "\\\\ms\\dist\\ossjava\\PROJ\\";
-		String runCommand = "java -cp \".;bin;\\\\ms\\dist\\ossjava\\PROJ\\commons-collections\\3.2.2\\lib\\*;";
+		String path = "D:\\\\ms\\dist\\ossjava\\PROJ\\";			//"\\\\ms\\dist\\ossjava\\PROJ\\";
+		String runCommand = "java -cp \".;bin; D:\\\\ms\\dist\\ossjava\\PROJ\\commons-collections\\3.2.2\\lib\\*;";
+				
+				//"java -cp \".;bin;\\\\ms\\dist\\ossjava\\PROJ\\commons-collections\\3.2.2\\lib\\*;";
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

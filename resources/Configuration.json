@@ -1,7 +1,7 @@
 {
 	"BrowserConfiguration": {
 		"chrome": {
-			"tags": "@RFB"
+			"tags": "@fb"
 		}
 	},
 	"iedriverPath": "D:\\Desktop_Data\\chromedriver_win32\\ie\\IEDriverServer.exe",

@@ -14,6 +14,8 @@ public class Runner_CMD {
 		String[] command = { "cmd.exe", "/C", "start", "cmd.exe", "/k", IvyXMLReader.readDataFromXMLForCMD() };
 		Runtime.getRuntime().exec(command);
 		System.out.println("Close window");
+		
+		
 	}
 
 }

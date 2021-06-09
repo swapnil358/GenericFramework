@@ -22,7 +22,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -31,35 +34,28 @@ import com.ms.config.XmlRunner;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.Scenario;
+import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.PickleEventWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
+import cucumber.runtime.model.CucumberFeature;
 import gherkin.events.PickleEvent;
 import gherkin.pickles.Pickle;
 import gherkin.pickles.PickleLocation;
 import gherkin.pickles.PickleStep;
-/*
- * @RunWith(Cucumber.class)
- * 
- * @CucumberOptions(features = "resource/Feature", glue =
- * {com.ms.stepDefination}, plugin = { "json", "json:Report/cucumber.json",
- * "rerun:rerun/failed_scenario.txt"}, tags= {"@NewFramework,@4444"})
- * 
- */
 import gherkin.pickles.PickleTag;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-@CucumberOptions(features = "resources/Features/Googlecheck.feature", 
-glue = { "com.ms.stepDefination/stepDefination1", "com.ms.utilities" }, 
+@CucumberOptions(features = "resources/Features", 
+glue = { "com.ms.stepDefination", "com.ms.utilities" }, 
 plugin = {
 		"json", "json:Report/cucumber.json", "rerun:rerun/failed_scenario.txt",
 		"html:target/cucumber" }, dryRun = true, tags = { "@NewFramework,@4444" })
 
 @Listeners(CustomTestNGListener.class)
 public class MSRunner {
-	public static WebDriver driver;
+	
 	public static String executionStartTime;
 	public static String executionStarDate;
-
+	public static WebDriver driver;
 	private TestNGCucumberRunner testNGCucumberRunner;
 	public static Map<Long, Scenario> scenarioMap = new HashMap<Long, Scenario>();
 
@@ -71,11 +67,11 @@ public class MSRunner {
 
 	@BeforeClass(alwaysRun = true)
 	public void beforeClass() throws InterruptedException, IOException {
-
+		
 		pageObjectRepository.initializeObjectRepository();
 
 		System.out.println("*******************Started Execution*********************");
-
+		System.out.println("----Inside @BeforeClass");
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss:a");
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Date date = new Date();
@@ -140,10 +136,7 @@ public class MSRunner {
 			 * options.addArguments("user-data-dir="+userProfile);
 			 * 
 			 * 
-			 */
-			
-			
-			
+			 */		
 			driver = new ChromeDriver(options);
 
 			/*
@@ -169,17 +162,23 @@ public class MSRunner {
 		}
 		XmlRunner.actions = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+
 	}
+	
 
 	int scenarioCounter = -1;
 	List<Integer> scenarioCounterList = new ArrayList<>();
 
+	
+	
 	/*
 	 * @para- MSpickle event
+	 * 
 	 */
-	@Test(groups = "cucumber", description = "Runs cucumber scenario", dataProvider = "scenarios")
+	@Test(groups = "cucumber", description = "Runs Cucumber Scenario", dataProvider = "scenarios")
 	public void runScenario(PickleEvent MSpickleEvent) throws Throwable {
-		for (PickleTag tag : MSpickleEvent.pickle.getTags()) {
+		System.out.println("----Inside @Test");
+		/*for (PickleTag tag : MSpickleEvent.pickle.getTags()) {
 			if (tag.getName().toLowerCase().contains("almid")) {
 				try {
 					CustomTestNGListener.CurrentALMID = tag.getName().split("_")[1];
@@ -188,17 +187,18 @@ public class MSRunner {
 				}
 				break;
 			}
-		}
+		} */
 		System.out.println(MSpickleEvent.pickle.getName());
-		scenarioCounter = scenarioCounter + 1;
+		scenarioCounter = scenarioCounter +1;
 		scenarioCounterList.add(scenarioCounter);
-		XmlRunner.ScenarioAllNumberMap.put(Thread.currentThread().getId(), scenarioCounterList);
+		XmlRunner.scenarioAllNumberMap.put(Thread.currentThread().getId(), scenarioCounterList);
 		XmlRunner.scenarioNumberMap.put(Thread.currentThread().getId(), scenarioCounter);
 
 		testNGCucumberRunner.runScenario(MSpickleEvent);
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	}
 
+	
+		System.out.print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	}
 	@DataProvider
 	public Object[][] scenarios()
 			throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
@@ -265,14 +265,18 @@ public class MSRunner {
 
 		return MSScenarios.toArray(new Object[][] {});
 	}
-
-	@AfterClass
+	
+	
+	
+	@AfterClass(alwaysRun = true)
 	public void afterClass() throws Exception {
+	System.out.println("----Inside @AfterClass");
 	XmlRunner.driverMap.get(Thread.currentThread().getId()).close();
 	XmlRunner.driverMap.get(Thread.currentThread().getId()).quit();
 		testNGCucumberRunner.finish();
 		new Report_Helper().onFinish();
 	//	GenerateEmailReportUpdated1.generateReport();
+	
 
 	}
 	

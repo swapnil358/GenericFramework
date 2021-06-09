@@ -1,5 +1,7 @@
 package com.ms.utilities;
 
+import org.testng.annotations.Test;
+
 public class Base64Encoder {
 
 	private final static char[] ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
@@ -48,11 +50,12 @@ public class Base64Encoder {
 	}
 }
 
-
+@Test
 class test {
-public static void main(String[] args) {
+public static void m() {
 
 
-	Base64Encoder.encode("Any String you want".getBytes());
+	
+	System.out.println("Encoded String is: " +Base64Encoder.encode("Any String you want".getBytes()));
 }
 }

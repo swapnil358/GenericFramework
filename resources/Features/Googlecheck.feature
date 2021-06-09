@@ -1,7 +1,7 @@
-@AC
-Feature: Google home page check
+@fb
+Feature: Facebook Authentication
 
-
-Scenario: Google check
-    Given I launch "https://www.google.com" url
-   
+  Scenario: Google Launch and authentication
+    Given I want to launch the facebook in firefox browser
+    When I want to authenticate with valid credentails
+    Then I want to verify whether user navigated to home page or not

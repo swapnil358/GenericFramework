@@ -1,3 +1,4 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -41,20 +42,27 @@
 			<version>2.3.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>6.10.3</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/io.cucumber/tag-expressions -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>tag-expressions</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>6.9.0</version>
-			
-		</dependency>
 
+		</dependency>
 
 
 		<!-- This is io.cucumber dependency you can delete above info.cukes if 
@@ -85,12 +93,13 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.11</version>
-			<scope>test</scope>
+			<version>6.14.3</version>
 		</dependency>
+
 
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -256,12 +265,8 @@
 
 
 		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-sandwich -->
-		<!-- <dependency>
-			<groupId>net.masterthought</groupId>
-			<artifactId>cucumber-sandwich</artifactId>
-			<version>3.3.0</version>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>net.masterthought</groupId> <artifactId>cucumber-sandwich</artifactId> 
+			<version>3.3.0</version> </dependency> -->
 
 	</dependencies>
 

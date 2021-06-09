@@ -1,1 +1,73 @@
-[]
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Google Launch and authentication",
+        "description": "",
+        "id": "facebook-authentication;google-launch-and-authentication",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 5,
+            "name": "I want to launch the facebook in firefox browser",
+            "match": {
+              "location": "stepDefination1.i_want_to_launch_the_facebook_in_firefox_browser()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 6,
+            "name": "I want to authenticate with valid credentails",
+            "match": {
+              "location": "stepDefination1.i_want_to_authenticate_with_valid_credentails()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 7,
+            "name": "I want to verify whether user navigated to home page or not",
+            "match": {
+              "location": "stepDefination1.i_want_to_verify_whether_user_navigated_to_home_page_or_not()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@fb"
+          },
+          {
+            "name": " chrome"
+          }
+        ]
+      }
+    ],
+    "name": "Facebook Authentication",
+    "description": "",
+    "id": "facebook-authentication",
+    "keyword": "Feature",
+    "uri": "resources/Features/Googlecheck.feature",
+    "tags": [
+      {
+        "name": "@fb",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

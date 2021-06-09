@@ -194,7 +194,7 @@ public class FailedRerunner {
 		}
 
 		for (int i = MSScenarios.size() - 1; i >= 0; i--) {
-			if (XmlRunner.ScenarioAllNumberMap.get(Thread.currentThread().getId()).contains(i)) {
+			if (XmlRunner.scenarioAllNumberMap.get(Thread.currentThread().getId()).contains(i)) {
 				MSScenarios.remove(i);
 			}
 		}

@@ -18,6 +18,7 @@ import org.testng.ITestNGListener;
 import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import com.google.gson.JsonElement;
 import com.ms.utilities.ConfigJsonReader;
@@ -36,8 +37,8 @@ public class XmlRunner {
 	private static final String FILE_NAME = "resources//testData.xlsx";
 	public static Map<Long, String> browserMap = new HashMap<Long, String>();
 	public static Map<Long, WebDriver> driverMap = new HashMap<Long, WebDriver>();
-	public static Map<Long, List<Integer>> ScenarioAllNumberMap = new HashMap<Long, List<Integer>>();
 	public static Map<Long, Integer> scenarioNumberMap = new HashMap<Long, Integer>();
+	public static Map<Long, List<Integer>> scenarioAllNumberMap = new HashMap<Long, List<Integer>>();
 	private static Map<Long, String[]> tagsMap = new HashMap<Long, String[]>();
 	
 	/*
@@ -91,7 +92,7 @@ public class XmlRunner {
 		thread_Failed.start();
 		browserMap.put(thread_Failed.getId(), browser);
 		tagsMap.put(thread_Failed.getId(), tagsMap.get(oldThread));
-		ScenarioAllNumberMap.put(thread_Failed.getId(), ScenarioAllNumberMap.get(oldThread));
+		scenarioAllNumberMap.put(thread_Failed.getId(), scenarioAllNumberMap.get(oldThread));
 		scenarioNumberMap.put(thread_Failed.getId(), scenarioNumberMap.get(oldThread));
 		// M55cenariosMap.put(thread_Failed.getId(),
 		// M55cenariosMap.get(oldThread));
@@ -152,10 +153,11 @@ public class XmlRunner {
 		}
 	}
 
-	@AfterSuite
+	/*@AfterSuite
 	public void cleanUp() throws IOException {
 	//	new Report_Helper().onFinish();
-	}
+		System.out.println("");
+	}*/
 
 	private static Object changeAnnotationValue(Annotation annotation, String key, Object newValue) {
 		Object handler = Proxy.getInvocationHandler(annotation);

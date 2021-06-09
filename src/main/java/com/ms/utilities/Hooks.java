@@ -4,6 +4,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.testng.Reporter;
 
 import com.ms.config.XmlRunner;
 
@@ -34,7 +35,7 @@ public class Hooks {
 				byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 				currentScenario.embed(screenshot, "image/png");
 			} catch (WebDriverException somePlatformsDontSupportScreenshots) {
-				// Reporter.addStepLog(somePlatformsDontSupportScreenshots.getMessage());
+				//Reporter.addStepLog(somePlatformsDontSupportScreenshots.getMessage());
 			} catch (Exception ex) {
 				currentScenario.write(ex.getMessage());
 			}

@@ -1,0 +1,14 @@
+<?xml version="1.0"?> 
+<ivysettings> 
+	<!-- IMPORTANT: Only use properties that will be visible to IvyDE --> 
+	<!-- Import build.properties for benefit of IvyDE --> 
+	<properties file="${ivy.settings.dir}/build.properties" override="false" /> 
+	<include file="${msde.build-template.dir}/ivy-settings.xml" /> 
+	
+	<resolvers> 
+	</resolvers> 
+	<modules>
+	</modules> 
+
+
+</ivysettings> 
