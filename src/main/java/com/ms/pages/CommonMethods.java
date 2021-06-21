@@ -4,6 +4,7 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,6 +76,7 @@ public class CommonMethods {
 	String color = "";
 	String getslotvalue = null;
 	Set<String> browsers = new HashSet<>();
+	private CommonMethods common;
 
 	public MSWebElement getEle(String locator_key_value, String page) throws Exception {
 		String locator_type;
@@ -753,6 +755,59 @@ public class CommonMethods {
 			actions.keyDown(Keys.CONTROL).sendKeys(Keys.ARROW_UP).perform();
 		} else {
 			Assert.fail("Scroll BAr not present");
+		}
+	}
+
+	public void test_data_is_read_from_Excel_with_row(String SheetName, int rowNo) throws Throwable {
+		readExcelData(SheetName, rowNo);
+	}
+
+	public void readExcelData(String SheetName, int rowNo) throws Exception {
+		testdataMap = getRowDataHM(System.getProperty("user.dir") + "//resources//", "testData", SheetName, rowNo);
+	}
+
+	public LinkedHashMap<String, String> getRowDataHM1(String FilePath, String WorkBookName, String SheetName,
+			int rowIndex) throws Exception {
+		FileInputStream file = new FileInputStream(new File(FilePath + "\\" + WorkBookName + ".xlsx"));
+		XSSFWorkbook book = new XSSFWorkbook(file);
+		XSSFSheet sheet = book.getSheet(SheetName);
+		XSSFRow row = sheet.getRow(rowIndex);
+		XSSFRow headerRow = sheet.getRow(0);
+		LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+		int firstCell = headerRow.getFirstCellNum();
+		int lastCell = headerRow.getLastCellNum();
+		XSSFCell cell1 = headerRow.getCell(firstCell);
+		XSSFCell ce112 = row.getCell(firstCell);
+		for (int i = firstCell + 2; i < lastCell; i++) {
+			cell1 = headerRow.getCell(i);
+			ce112 = row.getCell(i);
+			String headerValue = cell1.getStringCellValue();
+			String fieldValue;
+			if (ce112 == null) {
+				fieldValue = "";
+			} else {
+				fieldValue = ce112.getStringCellValue();
+			}
+			data.put(headerValue, fieldValue);
+		}
+		book.close();
+		return data;
+	}
+
+	public void VerifyTextPresentOnPage(DataTable data) throws Exception {
+		int j;
+
+		List<List<String>> obj = data.raw();
+		int h = obj.size();
+		for (j = 0; j < obj.size(); j++) {
+
+			String message = obj.get(1).get(j);
+			MSWebElement ele = getEle(By.xpath("//*[contains(text()," + message + "))"));
+			if (ele.isDisplayed()) {
+				System.out.println("Found : " + message);
+			} else {
+				throw new Exception("Element with message *" + message + "* found but NOT displayed");
+			}
 		}
 	}
 
@@ -1733,6 +1788,124 @@ public class CommonMethods {
 		driver.findElement(By.cssSelector("#undefined_" + Text + " > a > h2")).click();
 	}
 
+	public void uncheckAllTheCheckboxes(String page) throws Exception {
+		for (int i = 1; i <= 21; i++) {
+			WebElement elel = driver.findElement(By.xpath("//*[@id='Eligible_Type']/cc-checkbox[" + i + "]//input"));
+			if (elel.isSelected()) {
+				elel.click();
+			}
+		}
+	}
+
+	public void validateColorRed() {
+		String colour = driver.findElement(By.xpath("//div[@class='pagination-dropdown float-left']/div/span[3]"))
+				.getCssValue("color");
+
+		// System.out.println(font);
+		String hex = Color.fromString(colour).asHex();
+		String actual_color = "#cf3838";
+		if (actual_color.equals(hex)) {
+			System.out.println("color is red");
+		} else {
+			System.out.println("color is not red");
+		}
+	}
+
+	public void validateCountofRecordswithDropdown(String text, String uiElement, String page) {
+		String dropDopwnOption = driver.findElement(By.xpath("//span[contains(text(),'" + text + "')]")).getText();
+		String recordCount = dropDopwnOption.substring(dropDopwnOption.indexOf("(") + 1, dropDopwnOption.indexOf(")"));
+		String totalCount = driver.findElement(By.xpath("//*[@class='text']")).getText();
+		String[] vals = totalCount.split(" ");
+		boolean result = recordCount.equals(vals[3].trim());
+		Assert.assertTrue(result);
+	}
+
+	/* IrRat */
+	public void validateColorDate() throws ParseException {
+		String color = driver.findElement(By.xpath("//td[@class.'ud-laber]/div/b[text().'12-Nov-2020']"))
+				.getCssValue("color");
+		String actual_color = "#006400"; // System.out.println("olour, "+color);
+		String color_hex = org.openqa.selenium.support.Color.fromString(color).asHex();
+		System.out.println(actual_color.equals(color_hex) + " dark green color matches");
+
+		Assert.assertTrue(actual_color.equals(color_hex), "dark green color matches");
+		SimpleDateFormat objSDF = new SimpleDateFormat("dd-mm-yyyy");
+		Date dt_1 = objSDF.parse("12-11-2020");
+		Date dt_2 = objSDF.parse("12-05-2019");
+		System.out.println("Datel : " + objSDF.format(dt_1));
+		System.out.println("Date2 : " + objSDF.format(dt_2));
+	}
+
+	public void validateUpdateDetails(String uiElementl, String uiElement2, String page) throws Exception {
+		String elel = getEle(uiElementl, page).getText();
+		String ele2 = getEle(uiElement2, page).getText();
+		if (!elel.equals(ele2)) {
+			Assert.assertTrue(!(elel.equals(ele2)), "Names are not updated");
+		}
+	}
+	/* @author Trapti */
+
+	public void clickOnMultipleEle(String uiElement, String page) throws Exception {
+		List<MSWebElement> hideElel = common.getWebElementList(uiElement, page);
+		System.out.println(hideElel.size());
+		int e = hideElel.size();
+		for (int i = 0; i < e; i++) {
+			MSWebElement elell = hideElel.get(i);
+			String ele111 = elell.getText();
+			System.out.println(ele111);
+			elell.click();
+			Thread.sleep(5000);
+		}
+	}
+
+	public void validateCountofRecords() {
+		List<WebElement> gridRows = driver
+				.findElements(By.xpath("//table[@id='Individual Reservations Grid']/tbody/tr"));
+		int count = gridRows.size();
+		String countl = Integer.toString(count);
+		if (count == 0) {
+			System.out.println("Grid is empty");
+		}
+		String totalcountView = driver.findElement(By.xpath("//*[@class='text1")).getText();
+		String[] vals = totalcountView.split(" ");
+		boolean result = countl.equals(vals[3].trim());
+		Assert.assertTrue(result);
+	}
+
+	public void validateCovIeamMemberList(String uiElement, String id, String page) throws Exception {
+		List<MSWebElement> uilist = getWebElementList(uiElement, page);
+		List<String> nameList = new ArrayList<>();
+		for (WebElement e : uilist) {
+			String name = e.getText();
+			nameList.add(name);
+		}
+		getEle(id, page).click();
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("window.scroll6y(0,450)", "");
+		List<MSWebElement> uilist2 = getWebElementList(uiElement, page);
+
+		System.out.println(uilist2.size());
+		List<String> nameList2 = new ArrayList<>();
+		for (WebElement el : uilist2) {
+			String namel = el.getText();
+			nameList2.add(namel);
+		}
+		boolean b = nameList2.equals(nameList);
+		System.out.println(b);
+		Assert.assertTrue(b, "team members are different");
+	}
+
+	public void validateDropdownOption(String Text, String Page) {
+		String dropdcwnvalue = driver
+				.findElement(
+						By.xpath("//'[@id='View_UL']/Pqcontains(@id,'View')]//h2[contains(text(),'" + Text + " (')]"))
+				.getText();
+		boolean b = dropdcwnvalue.contains(Text);
+		Assert.assertTrue(b, "data not correct");
+	}
+
+	
+	
 	/*
 	 * public void ValidateStatus() throws Exception { MSWebElement elel =
 	 * cs.getEle(status_ac); String name = ele1.getText();
@@ -1742,11 +1915,7 @@ public class CommonMethods {
 	 * cs.getEle(stage_ac); String name = ele1.getText();
 	 * System.out.println("Status Under Asset Capture is : " + name); }
 	 */
-	
-	
 
-	
-	
 	public void closeCurrentTab() throws Exception {
 		Thread.sleep(1000);
 		driver.switchTo().window(parentWindHandler);
